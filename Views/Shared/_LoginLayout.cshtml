@@ -1,0 +1,64 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - QuickEmail</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <link href="https://cdn.datatables.net/1.10.15/css/dataTables.bootstrap.min.css" rel="stylesheet" />
+    <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+</head>
+
+<body>
+
+
+
+    <div class="body-content">
+        @RenderBody()
+        <div class="clearfix"></div>
+        <div class="supportBOt">
+            <div class="container">
+                <div class="row">
+
+                </div>
+                <div class="clear"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="myModal">
+        <div class="modal-dialog modalWidth750" role="document">
+            <div class="modal-content " style="margin-top: 100px;" id="modalBody">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" tabindex="-1" role="dialog" id="myModal1">
+        <div class="modal-dialog modalWidth750" role="document">
+            <div class="modal-content " style="margin-top: 100px;" id="modalBody1">
+
+            </div>
+        </div>
+    </div>
+
+    <div class="clearfix"></div>
+    <footer>
+        <p>&copy; @DateTime.Now.Year ExpressExtension.com, Email Enterprises LLC. All rights reserved.</p>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.15/js/dataTables.bootstrap4.min.js "></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>
+<script>
+    $("lidashboard").addClass('active');
+</script>

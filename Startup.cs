@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using QuickEmail.Data.IRepository;
+using QuickEmail.Data.Repository;
 
 namespace QuickEmail
 {
@@ -25,8 +27,18 @@ namespace QuickEmail
         {
             services.AddControllersWithViews();
             services.AddMvc();
+            services.AddDistributedMemoryCache();
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromDays(1); // It depends on user requirements.
+                options.Cookie.Name = "Session";
+            });
             services.AddRazorPages()
         .AddRazorRuntimeCompilation();
+
+            services.AddTransient<IEmailRepository, EmailRepository>();
+            services.AddTransient<IAdminRepository, AdminRepository>();
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,14 +58,14 @@ namespace QuickEmail
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseSession();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Dashboard}/{action=Index}/{id?}");
+                    pattern: "{controller=Admin}/{action=SignIn}/{id?}");
             });
         }
     }

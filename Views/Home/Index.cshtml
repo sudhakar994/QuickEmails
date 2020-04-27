@@ -18,7 +18,7 @@
 <div class="container">
     <a href="javascript:void(0);" onclick="AddCategories()" class="btnprimary btn-md float-right">Add Contacts</a>
     <div class="clearfix spacer10"></div>
-    <table id="tblCategories" class="table">
+    <table id="tblContacts" class="table">
         <thead>
             <tr>
                 <th>S.No.</th>
@@ -47,13 +47,10 @@
                     <a href="javascript:void(0);" class="btn-delete" onclick="fnDeleteCategory()">Delete</a>
                 </td>
             </tr>
-
-
-
-
         </tbody>
     </table>
 </div>
 
 <script type="text/javascript">
+    $('#tblContacts').DataTable();
 </script>

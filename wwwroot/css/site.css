@@ -1091,7 +1091,7 @@ input[type="text"], input[type="search"], select {
         background: none
     }
 
-label.error:before {
+/*label.error:before {
     content: "\f06a";
     position: absolute;
     font-family: 'FontAwesome';
@@ -1099,26 +1099,13 @@ label.error:before {
     top: -1px;
     color: #d74313;
     font-size: 15px;
-}
+}*/
 
 label.error {
-    margin: 0;
-    padding: 2px 5px 2px 25px;
-    box-sizing: border-box;
-    background: #fff;
-    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.4);
-    position: absolute;
-    right: 10px;
-    top: 0px;
-    z-index: 1;
-    font-size: 13px;
-    border-radius: 2px;
-    border: 1px solid #d74313;
-    color: #333;
-    font-weight: normal;
+    color: red;
 }
 
-    label.error:after {
+    /*label.error:after {
         content: "";
         position: absolute;
         width: 0;
@@ -1139,7 +1126,7 @@ label.error {
         transform: rotate(-43deg);
         box-shadow: -1px 1px 0px 0 rgb(215, 71, 87);
         background: #fff;
-    }
+    }*/
 
 .AddVideo .form-group {
     position: relative !important;
@@ -1309,4 +1296,25 @@ a.dash-detail {
 
 .logotext {
     color: #771577;
+}
+row .input-field input:focus {
+    border-bottom: 2px solid #0f0fde !important;
+    box-shadow: 0 1px 0 0 red !important;
+    background: #f2f3f5;
+    border: 1px solid #e2e3e5;
+    border-radius: 2px;
+    width: 380px;
+}
+
+#inputformfield {
+    background: #f2f3f5;
+    border: 1px solid #e2e3e5;
+    border-radius: 2px;
+    width: 380px;
+}
+
+label.gfield_label {
+    font-weight: 600 !important;
+    color: #0f5ba7 !important;
+    font-size: 14px !important;
 }
