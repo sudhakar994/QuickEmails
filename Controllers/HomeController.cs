@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using QuickEmail.Models;
+using QuickEmail.Utility;
 
 namespace QuickEmail.Controllers
 {
+    [AuthorizeFilter]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
