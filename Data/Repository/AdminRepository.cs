@@ -22,7 +22,7 @@ namespace QuickEmail.Data.Repository
         {
             _config = config;
         }
-        private IDbConnection quickEmaildbConnection => new SqlConnection(_config.GetConnectionString("QuickEmailNewDb"));
+        private IDbConnection quickEmaildbConnection => new SqlConnection(_config.GetConnectionString("QuickEmailDb"));
     
         private string GetAppSettings(string key)
         {
