@@ -3,9 +3,11 @@ using System.Collections.Generic;
 
 using Microsoft.AspNetCore.Mvc;
 using QuickEmail.Data.IRepository;
+using QuickEmail.Utility;
 
 namespace QuickEmail.Controllers
 {
+    [UserAuthenticationFilter]
     public class EmailController : Controller
     {
         private readonly IEmailRepository emailRepository;

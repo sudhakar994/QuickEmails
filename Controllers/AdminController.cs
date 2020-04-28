@@ -33,7 +33,7 @@ namespace QuickEmail.Controllers
             {
                 isValidUser = adminRepository.GetUserDetails(user);
 
-                if(isValidUser)
+                if (isValidUser)
                 {
                     HttpContext.Session.SetString("Email", user.Email);
                     return RedirectToAction("Index", "Dashboard");
@@ -45,5 +45,18 @@ namespace QuickEmail.Controllers
         }
         #endregion
 
+
+        #region SignOut
+        /// <summary>
+        /// SignOut
+        /// </summary>
+        /// <returns></returns>
+
+        public IActionResult SignOut()
+        {
+            HttpContext.Session.Clear();
+            return RedirectToAction("SignIn", "Admin");
+        }
+        #endregion
     }
 }

@@ -10,8 +10,39 @@ using System.Web;
 
 namespace QuickEmail.Utility
 {
-    public class SessionTimeoutAttribute : ActionFilterAttribute
+
+    public class UserAuthenticationFilter : ActionFilterAttribute, IActionFilter
     {
-       
+
+
+
+        public override void OnActionExecuted(ActionExecutedContext context)
+        {
+           
+
+        }
+
+        public override void OnActionExecuting(ActionExecutingContext context)
+        {
+            Controller controller = context.Controller as Controller;
+
+            var email = context.HttpContext.Session.GetString("Email");
+
+            if (controller != null)
+            {
+                if (string.IsNullOrEmpty(email))
+                {
+                    context.Result =
+                           new RedirectToRouteResult(
+                               new RouteValueDictionary{{ "controller", "Admin" },
+                                          { "action", "SignIn" }
+
+                                                             });
+                }
+            }
+            base.OnActionExecuting(context);
+
+        }
+
     }
 }

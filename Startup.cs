@@ -10,6 +10,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using QuickEmail.Data.IRepository;
 using QuickEmail.Data.Repository;
+using QuickEmail.Utility;
 
 namespace QuickEmail
 {
@@ -38,7 +39,7 @@ namespace QuickEmail
 
             services.AddTransient<IEmailRepository, EmailRepository>();
             services.AddTransient<IAdminRepository, AdminRepository>();
-            
+            services.AddScoped<UserAuthenticationFilter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
