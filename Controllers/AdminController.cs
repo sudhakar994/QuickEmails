@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Routing;
 using QuickEmail.Data.IRepository;
 using QuickEmail.Models;
 
@@ -20,6 +21,12 @@ namespace QuickEmail.Controllers
         public IActionResult SignIn()
         {
 
+            var sessionEmail = HttpContext.Session.GetString("Email");
+
+            if(!string.IsNullOrEmpty(sessionEmail))
+            {
+                return RedirectToAction("Index", "Dashboard");
+            }
             return View();
         }
 
@@ -40,7 +47,7 @@ namespace QuickEmail.Controllers
                 }
             }
 
-            return RedirectToAction("SignIn", "Admin");
+            return RedirectToAction("SignIn","Admin");
 
         }
         #endregion
