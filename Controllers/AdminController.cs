@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Routing;
+using NToastNotify;
 using QuickEmail.Data.IRepository;
 using QuickEmail.Models;
 
@@ -13,14 +14,17 @@ namespace QuickEmail.Controllers
     public class AdminController : Controller
     {
         private readonly IAdminRepository adminRepository;
-        public AdminController(IAdminRepository adminRepository)
+        private readonly IToastNotification toastNotification;
+        public AdminController(IAdminRepository adminRepository, IToastNotification toastNotification)
         {
             this.adminRepository = adminRepository;
+            this.toastNotification = toastNotification;
         }
 
         public IActionResult SignIn()
         {
 
+           
             var sessionEmail = HttpContext.Session.GetString("Email");
 
             if(!string.IsNullOrEmpty(sessionEmail))
@@ -43,10 +47,12 @@ namespace QuickEmail.Controllers
                 if (isValidUser)
                 {
                     HttpContext.Session.SetString("Email", user.Email);
+                    toastNotification.AddSuccessToastMessage("Login Success");
                     return RedirectToAction("Index", "Dashboard");
+                    
                 }
             }
-
+            toastNotification.AddErrorToastMessage("Invalid Credential");
             return RedirectToAction("SignIn","Admin");
 
         }

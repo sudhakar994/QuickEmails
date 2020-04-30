@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using NToastNotify;
 using QuickEmail.Data.IRepository;
 using QuickEmail.Data.Repository;
 using QuickEmail.Utility;
@@ -31,8 +32,14 @@ namespace QuickEmail
             services.AddDistributedMemoryCache();
             services.AddSession(options =>
             {
-                options.IdleTimeout = TimeSpan.FromDays(1); // It depends on user requirements.
+                options.IdleTimeout = TimeSpan.FromMinutes(10); // It depends on user requirements.
                 options.Cookie.Name = "Session";
+            });
+            services.AddMvc().AddNToastNotifyToastr(new ToastrOptions()
+            {
+                ProgressBar = false,
+                PositionClass = ToastPositions.TopCenter,
+                TapToDismiss = true
             });
             services.AddRazorPages()
         .AddRazorRuntimeCompilation();
@@ -61,7 +68,7 @@ namespace QuickEmail
             app.UseRouting();
             app.UseSession();
             app.UseAuthorization();
-
+            app.UseNToastNotify();
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllerRoute(

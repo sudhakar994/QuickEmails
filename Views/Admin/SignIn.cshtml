@@ -492,11 +492,10 @@
         });
 
         function signIn() {
-            debugger;
-            //if ($("#frmSignIn").valid()) {
-            //    $("#frmSignIn").submit();
-            //}
-              toastr.success('Added');
+            if ($("#frmSignIn").valid()) {
+                $("#frmSignIn").submit();
+            }
+             
         }
     </script>
 }
