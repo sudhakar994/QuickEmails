@@ -47,7 +47,6 @@ namespace QuickEmail.Controllers
                 if (isValidUser)
                 {
                     HttpContext.Session.SetString("Email", user.Email);
-                    toastNotification.AddSuccessToastMessage("Login Success");
                     return RedirectToAction("Index", "Dashboard");
                     
                 }
