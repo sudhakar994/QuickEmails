@@ -7,69 +7,70 @@
 }
 
 
-    <body>
-            <div class="limiter">
-                <div class="container-login100">
-                    <div class="wrap-login100">
-                        <div class="login100-pic js-tilt" data-tilt>
-                            <h1>Quick Emails</h1>
-                            <p>Manage your customers easily with quick emails</p>
-                            <img src="~/images/image.jpg" alt="IMG">
-                        </div>
-                        @using (Html.BeginForm("UserSignIn", "Admin", FormMethod.Post,new { @Id = "frmSignIn" }))
-                        {
-                            <form class="login100-form validate-form">
-                                <span class="login100-form-title">
-                                    Member Login
-                                </span>
-
-                                <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
-                                    <input class="input100" type="text" id="Email" name="Email" placeholder="Email">
-                                    <span class="focus-input100"></span>
-                                    <span class="symbol-input100">
-                                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                                    </span>
-                                </div>
-
-                                <div class="wrap-input100 validate-input" data-validate="Password is required">
-                                    <input class="input100" type="password" id="Password" name="Password" placeholder="Password">
-                                    <span class="focus-input100"></span>
-                                    <span class="symbol-input100">
-                                        <i class="fa fa-lock" aria-hidden="true"></i>
-                                    </span>
-                                </div>
-
-                                <div class="container-login100-form-btn">
-                                    <button class="login100-form-btn" onclick="signIn()">
-                                        Login
-                                    </button>
-                                </div>
-
-                                <div class="text-center p-t-12">
-                                    <span class="txt1">
-                                        Forgot
-                                    </span>
-                                    <a class="txt2" href="#">
-                                        Username / Password?
-                                    </a>
-                                </div>
-
-
-                                <div class="text-center p-t-136">
-                                    <a class="txt2" href="#">
-                                        Create your Account
-                                        <i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-                                    </a>
-                                </div>
-                            </form>
-                        }
-
-                    </div>
+<body>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-pic js-tilt" data-tilt>
+                    <h1>Quick Emails</h1>
+                    <p>Manage your customers easily with quick emails</p>
+                    <img src="~/images/image.jpg" alt="IMG">
                 </div>
-            </div>
-        
+                <div id="loginform">
+                    @using (Html.BeginForm("UserSignIn", "Admin", FormMethod.Post, new { @Id = "frmSignIn" }))
+                    {
+                        <form class="login100-form validate-form">
+                            <span class="login100-form-title">
+                                Member Login
+                            </span>
 
-    </body>
+                            <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                                <input class="input100" type="text" id="Email" name="Email" placeholder="Email">
+                                <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+                                    <i class="fa fa-envelope" aria-hidden="true"></i>
+                                </span>
+                            </div>
+
+                            <div class="wrap-input100 validate-input" data-validate="Password is required">
+                                <input class="input100" type="password" id="Password" name="Password" placeholder="Password">
+                                <span class="focus-input100"></span>
+                                <span class="symbol-input100">
+                                    <i class="fa fa-lock" aria-hidden="true"></i>
+                                </span>
+                            </div>
+
+                            <div class="container-login100-form-btn">
+                                <button class="login100-form-btn" onclick="signIn()">
+                                    Login
+                                </button>
+                            </div>
+
+                            <div class="text-center p-t-12">
+                                <span class="txt1">
+                                    Forgot
+                                </span>
+                                <a class="txt2" href="#">
+                                    Useremail / Password?
+                                </a>
+                            </div>
+                            <div>
+                                 <h4 style="color:purple">Dont have an account? <a href="/admin/register">Register here</a></h4>
+                            </div>
+
+
+                        </form>
+                    }
+                </div>
+               
+
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
 
 
 @section Scripts {
@@ -85,6 +86,7 @@
                     Password: {
                         required: true
                     }
+                   
                 },
                 messages: {
                     Email: {
@@ -92,7 +94,8 @@
                     },
                     Password: {
                         required: "Password    required"
-                    }
+                    },
+                    
                 }
             });
         });
@@ -104,10 +107,6 @@
 
         }
 
-        function register() {
-            $("#registerform").show();
-            $("#loginform").hide();
-
-        }
+        
     </script>
 }

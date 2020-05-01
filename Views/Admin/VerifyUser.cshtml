@@ -1,0 +1,91 @@
+﻿@using Microsoft.AspNetCore.Http;
+
+@{
+    var userId = Html.ViewContext.HttpContext.Session.GetString("UserId") != null ? Html.ViewContext.HttpContext.Session.GetString("UserId").ToString() : string.Empty;
+}
+
+<body>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-pic js-tilt" data-tilt>
+
+                </div>
+                <div id="loginform">
+                    <img src="~/images/verifaction.png" alt="IMG">
+                    @using (Html.BeginForm("UserSignIn", "Admin", FormMethod.Post, new { @Id = "frmVerify" }))
+                    {
+                        <form class="login100-form validate-form">
+                            <span class="login100-form-title">
+                                Check your email!
+                                We’ve sent a six-digit confirmation code to <strong>sksmtechworld@gmail.com</strong>. Enter it below to confirm your email address.
+                            </span>
+
+                            <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                                <input class="input100" type="text" id="VerificationCode" name="VerificationCode">
+                                <span class="focus-input100"></span>
+
+                            </div>
+
+
+
+                            <div class="container-login100-form-btn">
+                                <button class="login100-form-btn" onclick="verifyUser('@userId')">
+                                    Verify Now
+                                </button>
+                            </div>
+
+                        </form>
+                    }
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+
+@section Scripts {
+    <script>
+        $(function () {
+
+            $('#frmVerify').validate({
+                ignore: ":not(:visible)",
+                rules: {
+                    VerificationCode: {
+                        required: true
+                    }
+
+
+                },
+                VerificationCode: {
+                    Email: {
+                        required: "VerificationCode  required"
+                    }
+                }
+            });
+        });
+
+        function verifyUser(userId) {
+            if ($("#frmVerify").valid()) {
+                $.ajax({
+                    type: "POST",
+                    contentType: "application/json; charset=utf-8",
+                    url: "/Admin/VerifyUser",
+                    data: { verificationCode: $("#VerificationCode").val(), userId: userId},
+                    dataType: "json",
+                    success: function (data) {
+                       
+                    },
+                    error: function () {
+                        
+                    }
+                })
+            }
+
+        }
+
+    </script>
+}

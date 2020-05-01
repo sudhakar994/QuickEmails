@@ -1,0 +1,115 @@
+﻿
+@model QuickEmail.Models.User
+
+@{
+    ViewData["Title"] = "Register";
+}
+
+
+<body>
+    <div class="limiter">
+        <div class="container-login100">
+            <div class="wrap-login100">
+                <div class="login100-pic js-tilt" data-tilt>
+                    <h1>Quick Emails</h1>
+                    <p>Manage your customers easily with quick emails</p>
+                    <img src="~/images/image.jpg" alt="IMG">
+                </div>
+                <div id="loginform">
+                    @using (Html.BeginForm("UserRegister", "Admin", FormMethod.Post, new { @Id = "frmRegister" }))
+                    {
+                    <form class="login100-form validate-form">
+                        <span class="login100-form-title">
+                            Create an Account with Qucik Emails
+                        </span>
+                        <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                            <input class="input100" type="text" id="UserName" name="UserName" placeholder="User Name">
+                            <span class="focus-input100"></span>
+                            <span class="symbol-input100">
+                                <i class="fa fa-user" aria-hidden="true"></i>
+                            </span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Valid email is required: ex@abc.xyz">
+                            <input class="input100" type="text" id="Email" name="Email" placeholder="Email">
+                            <span class="focus-input100"></span>
+                            <span class="symbol-input100">
+                                <i class="fa fa-envelope" aria-hidden="true"></i>
+                            </span>
+                        </div>
+
+                        <div class="wrap-input100 validate-input" data-validate="Password is required">
+                            <input class="input100" type="password" id="Password" name="Password" placeholder="Password">
+                            <span class="focus-input100"></span>
+                            <span class="symbol-input100">
+                                <i class="fa fa-lock" aria-hidden="true"></i>
+                            </span>
+                        </div>
+
+                        <div class="container-login100-form-btn">
+                            <button class="login100-form-btn" onclick="signIn()">
+                                Register
+                            </button>
+                        </div>
+                        <div>
+                            <h4 style="color:purple">Already have an account? <a href="/admin/SignIn">Login here</a></h4>
+                        </div>
+
+
+                    </form>
+                    }
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+</body>
+
+
+@section Scripts {
+    <script>
+        $(function () {
+
+            $('#frmRegister').validate({
+                ignore: ":not(:visible)",
+                rules: {
+                    Email: {
+                        required: true
+                    },
+                    Password: {
+                        required: true
+                    },
+                    UserName: {
+                         required: true
+                    },
+
+                },
+                messages: {
+                    Email: {
+                        required: "Email  required"
+                    },
+                    Password: {
+                        required: "Password    required"
+                    },
+                     UserName: {
+                         required: "User name required "
+                    },
+
+                }
+            });
+        });
+
+        function signIn() {
+            if ($("#frmRegister").valid()) {
+                $("#frmRegister").submit();
+            }
+
+        }
+
+
+    </script>
+}

@@ -24,10 +24,10 @@ namespace QuickEmail.Controllers
         public IActionResult SignIn()
         {
 
-           
+
             var sessionEmail = HttpContext.Session.GetString("Email");
 
-            if(!string.IsNullOrEmpty(sessionEmail))
+            if (!string.IsNullOrEmpty(sessionEmail))
             {
                 return RedirectToAction("Index", "Dashboard");
             }
@@ -48,11 +48,11 @@ namespace QuickEmail.Controllers
                 {
                     HttpContext.Session.SetString("Email", user.Email);
                     return RedirectToAction("Index", "Dashboard");
-                    
+
                 }
             }
             toastNotification.AddErrorToastMessage("Invalid Credential");
-            return RedirectToAction("SignIn","Admin");
+            return RedirectToAction("SignIn", "Admin");
 
         }
         #endregion
@@ -69,6 +69,62 @@ namespace QuickEmail.Controllers
             HttpContext.Session.Clear();
             return RedirectToAction("SignIn", "Admin");
         }
+        #endregion
+
+
+        #region Register
+        /// <summary>
+        /// Register
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+
+        public IActionResult Register()
+        {
+            return View();
+        }
+
+        #endregion
+
+
+        #region User Register
+        /// <summary>
+        /// UserRegister
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+
+        public IActionResult UserRegister(User user)
+        {
+            var userDetail = new User();
+            if (user != null)
+            {
+                userDetail = adminRepository.UserRegister(user);
+
+                if (userDetail != null && userDetail.Status == "Success")
+                {
+                    HttpContext.Session.SetString("UserId", userDetail.UserId.ToString());
+                    return RedirectToAction("VerifyUser", "Admin");
+                }
+                else
+                {
+                    toastNotification.AddErrorToastMessage("Email Already Registered!");
+                    return RedirectToAction("Register", "Admin");
+                }
+            }
+            return View();
+        }
+
+        #endregion
+
+        #region
+
+        public IActionResult VerifyUser(string verificationCode,Guid userId)
+        {
+           
+            return View();
+        }
+
         #endregion
     }
 }

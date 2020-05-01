@@ -14,7 +14,7 @@ namespace QuickEmail.Data.Repository
 {
     public class AdminRepository : IAdminRepository
     {
-       
+
 
         private readonly IConfiguration _config;
 
@@ -23,7 +23,7 @@ namespace QuickEmail.Data.Repository
             _config = config;
         }
         private IDbConnection quickEmaildbConnection => new SqlConnection(_config.GetConnectionString("QuickEmailDb"));
-    
+
         private string GetAppSettings(string key)
         {
             var value = _config.GetSection("AppSettings:" + key)?.Value;
@@ -50,20 +50,105 @@ namespace QuickEmail.Data.Repository
             {
                 using (var dbConnection = quickEmaildbConnection)
                 {
-                    userDetails = dbConnection.Query<User>(SqlStringConstatnt.GetUserDetail).SingleOrDefault();
+                    userDetails = dbConnection.Query<User>(SqlStringConstant.GetUserDetail).SingleOrDefault();
 
-                    if(userDetails != null)
+                    if (userDetails != null)
                     {
-                        if(userDetails.Email == user.Email && userDetails.Password == user.Password)
+                        if (userDetails.Email == user.Email && userDetails.Password == user.Password)
                         {
                             isValidUser = true;
-                            
+
                         }
                     }
                 }
             }
             return isValidUser;
         }
+
+        #endregion
+
+        #region UserRegister
+        /// <summary>
+        /// UserRegister
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        public User UserRegister(User user)
+        {
+            var userDetail = new User();
+            if (user != null)
+            {
+                using (var dbConnection = quickEmaildbConnection)
+                {
+
+
+                    var emailAddress = dbConnection.Query<string>(SqlStringConstant.GetEmailAddress, user).SingleOrDefault();
+
+                    if (string.IsNullOrWhiteSpace(emailAddress))
+                    {
+                        #region Create Password Salt Key and Encryption
+
+                        user.PasswordSalt = CommonMethods.CreateSalt(8);
+                        user.Password = CommonMethods.EncryptPassword(user.Password, user.PasswordSalt);
+
+                        #endregion
+
+                        Random generator = new Random();
+                        user.VerificationCode = generator.Next(0, 999999).ToString("D6");
+
+                        user.UserId = dbConnection.Query<Guid>(SqlStringConstant.SaveUser, user).SingleOrDefault();
+
+                        if (user.UserId != Guid.Empty)
+                        {
+                            user.Status = "Success";
+                        }
+                        else
+                        {
+                            user.Status = "Failure";
+                        }
+                    }
+                    else
+                    {
+                        userDetail.Status = "Email Already register with us!";
+                    }
+
+                    userDetail = user;
+
+
+
+
+
+                }
+            }
+            return userDetail;
+        }
+
+        #region VerifyUser
+        /// <summary>
+        /// VerifyUser
+        /// </summary>
+        /// <param name="verificationCode"></param>
+        /// <returns></returns>
+
+        public bool VerifyUser(string verificationCode,Guid userId)
+        {
+            bool isValidVerificationCode = false;
+            if (!string.IsNullOrWhiteSpace(verificationCode))
+            {
+                using (var dbConnection = quickEmaildbConnection)
+                {
+                    var verifcationCode = dbConnection.Query<string>(SqlStringConstant.GetVerifactionCodeByUserId,new {UserId= userId }).SingleOrDefault();
+
+                    if(verifcationCode == verificationCode)
+                    {
+                        isValidVerificationCode = true;
+                    }
+                }
+            }
+            return isValidVerificationCode;
+        }
+
+        #endregion
 
         #endregion
 

@@ -16,8 +16,9 @@ namespace QuickEmail.Models
 
         public string Password { get; set; }
 
-        
+        public string Status { get; set; }
 
-        
+        public string PasswordSalt { get; set; }
+        public string VerificationCode { get; set; }
     }
 }
