@@ -7,7 +7,7 @@ namespace QuickEmail.Utility
 {
     public static class SqlStringConstant
     {
-        public const string GetUserDetail= "Select  email Email , password Password FROM loginuser ";
+        public const string GetUserDetail= "Select User_Id UserId, Email Email ,User_Name UserName, Password Password,Password_Salt PasswordSalt FROM em_Users WHERE Email=@Email AND  Is_Deleted=0";
 
         public const string GetEmailAddress = "SELECT Email Email FROM em_Users  WHERE Email=@Email AND Is_Deleted=0";
         public const string SaveUser = "INSERT INTO em_Users  ( User_Name, Email,Password,Password_Salt , Verification_Code) OUTPUT INSERTED.User_Id VALUES (@UserName,@Email,@Password,@PasswordSalt,@VerificationCode)";

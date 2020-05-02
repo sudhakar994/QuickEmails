@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Routing;
 using NToastNotify;
 using QuickEmail.Data.IRepository;
 using QuickEmail.Models;
+using QuickEmail.Utility;
 
 namespace QuickEmail.Controllers
 {
+  
     public class AdminController : Controller
     {
         private readonly IAdminRepository adminRepository;
@@ -39,19 +41,20 @@ namespace QuickEmail.Controllers
 
         public IActionResult UserSignIn(User user)
         {
-            bool isValidUser = false;
+            var userDetails = new User();
             if (user != null && !string.IsNullOrEmpty(user.Email))
             {
-                isValidUser = adminRepository.GetUserDetails(user);
+                userDetails = adminRepository.GetUserDetails(user);
 
-                if (isValidUser)
+                if (userDetails != null  && userDetails.Status == "ValidUser")
                 {
-                    HttpContext.Session.SetString("Email", user.Email);
+                    HttpContext.Session.SetString("Email", userDetails.Email);
+                    HttpContext.Session.SetString("UserName", userDetails.UserName);
+                    HttpContext.Session.SetString("UserId", userDetails.UserId.ToString());
                     return RedirectToAction("Index", "Dashboard");
-
                 }
             }
-            toastNotification.AddErrorToastMessage("Invalid Credential");
+            toastNotification.AddErrorToastMessage("Invalid credential");
             return RedirectToAction("SignIn", "Admin");
 
         }
@@ -124,7 +127,7 @@ namespace QuickEmail.Controllers
         /// <param name="verificationCode"></param>
         /// <param name="userId"></param>
         /// <returns></returns>
-
+        
         public IActionResult VerifyUser()
         {
            

@@ -18,7 +18,7 @@ namespace QuickEmail.Utility
 
         public override void OnActionExecuted(ActionExecutedContext context)
         {
-           
+
 
         }
 
@@ -28,7 +28,8 @@ namespace QuickEmail.Utility
 
             var email = context.HttpContext.Session.GetString("Email");
             var userName = context.HttpContext.Session.GetString("UserName");
-            var UserId= context.HttpContext.Session.GetString("UserId");
+            var UserId = context.HttpContext.Session.GetString("UserId");
+            var inVerification = context.HttpContext.Session.GetString("InVerification");
             if (controller != null)
             {
                 if (string.IsNullOrEmpty(userName) && string.IsNullOrEmpty(email))
@@ -40,7 +41,9 @@ namespace QuickEmail.Utility
 
                                                              });
                 }
-              
+               
+
+
             }
             base.OnActionExecuting(context);
 

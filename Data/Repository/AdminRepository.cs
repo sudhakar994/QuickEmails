@@ -41,28 +41,34 @@ namespace QuickEmail.Data.Repository
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        public bool GetUserDetails(User user)
+        public User GetUserDetails(User user)
         {
-            bool isValidUser = false;
+          
             var userDetails = new User();
 
             if (user != null && !string.IsNullOrEmpty(user.Email))
             {
                 using (var dbConnection = quickEmaildbConnection)
                 {
-                    userDetails = dbConnection.Query<User>(SqlStringConstant.GetUserDetail).SingleOrDefault();
+                    userDetails = dbConnection.Query<User>(SqlStringConstant.GetUserDetail, user).SingleOrDefault();
 
                     if (userDetails != null)
                     {
+                        user.Password = CommonMethods.EncryptPassword(user.Password, userDetails.PasswordSalt);
+
                         if (userDetails.Email == user.Email && userDetails.Password == user.Password)
                         {
-                            isValidUser = true;
+                            userDetails.Status = "ValidUser";
 
+                        }
+                        else
+                        {
+                            userDetails.Status = "InValidUser";
                         }
                     }
                 }
             }
-            return isValidUser;
+            return userDetails;
         }
 
         #endregion

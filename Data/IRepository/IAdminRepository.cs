@@ -8,7 +8,7 @@ namespace QuickEmail.Data.IRepository
 {
   public  interface IAdminRepository
     {
-        bool GetUserDetails(User user);
+        User GetUserDetails(User user);
         User UserRegister(User user);
         User VerifyUser(string verificationCode, Guid userId);
     }
