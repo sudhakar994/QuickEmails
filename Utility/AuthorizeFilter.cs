@@ -27,10 +27,11 @@ namespace QuickEmail.Utility
             Controller controller = context.Controller as Controller;
 
             var email = context.HttpContext.Session.GetString("Email");
-
+            var userName = context.HttpContext.Session.GetString("UserName");
+            var UserId= context.HttpContext.Session.GetString("UserId");
             if (controller != null)
             {
-                if (string.IsNullOrEmpty(email))
+                if (string.IsNullOrEmpty(email) && string.IsNullOrEmpty(userName) && string.IsNullOrEmpty(UserId))
                 {
                     context.Result =
                            new RedirectToRouteResult(

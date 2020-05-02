@@ -93,7 +93,7 @@ namespace QuickEmail.Controllers
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-
+        [HttpPost]
         public IActionResult UserRegister(User user)
         {
             var userDetail = new User();
@@ -117,12 +117,51 @@ namespace QuickEmail.Controllers
 
         #endregion
 
-        #region
+        #region Verify User
+        /// <summary>
+        /// VerifyUser
+        /// </summary>
+        /// <param name="verificationCode"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
 
-        public IActionResult VerifyUser(string verificationCode,Guid userId)
+        public IActionResult VerifyUser()
         {
            
             return View();
+        }
+
+        #endregion
+
+
+        #region Validate Verification Code
+        /// <summary>
+        /// ValidateVerificationCode
+        /// </summary>
+        /// <param name="verificationCode"></param>
+        /// <param name="userId"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public JsonResult ValidateVerificationCode(string verificationCode, Guid userId)
+        {
+            var verifyUserDetail = new User();
+
+            bool isValidVerification = false;
+            if (!string.IsNullOrEmpty(verificationCode) && userId != Guid.Empty)
+            {
+                verifyUserDetail = adminRepository.VerifyUser(verificationCode, userId);
+                if (verifyUserDetail != null && verifyUserDetail.Status == "ValidUser")
+                {
+                    HttpContext.Session.SetString("Email", verifyUserDetail.Email);
+                    HttpContext.Session.SetString("UserName", verifyUserDetail.UserName);
+                    isValidVerification = true;
+                }
+                else if (verifyUserDetail != null && verifyUserDetail.Status == "InvalidUser")
+                {
+                    toastNotification.AddErrorToastMessage("Invalid Verification Code!");
+                }
+            }
+            return Json(isValidVerification);
         }
 
         #endregion

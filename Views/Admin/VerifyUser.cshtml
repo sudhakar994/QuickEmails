@@ -1,7 +1,9 @@
 ﻿@using Microsoft.AspNetCore.Http;
 
 @{
+    ViewData["Title"] = "verification";
     var userId = Html.ViewContext.HttpContext.Session.GetString("UserId") != null ? Html.ViewContext.HttpContext.Session.GetString("UserId").ToString() : string.Empty;
+    var a = 0;
 }
 
 <body>
@@ -13,7 +15,7 @@
                 </div>
                 <div id="loginform">
                     <img src="~/images/verifaction.png" alt="IMG">
-                    @using (Html.BeginForm("UserSignIn", "Admin", FormMethod.Post, new { @Id = "frmVerify" }))
+                    @using (Html.BeginForm("ValidateVerificationCode", "Admin", FormMethod.Post, new { @Id = "frmVerify" }))
                     {
                         <form class="login100-form validate-form">
                             <span class="login100-form-title">
@@ -30,7 +32,7 @@
 
 
                             <div class="container-login100-form-btn">
-                                <button class="login100-form-btn" onclick="verifyUser('@userId')">
+                                <button class="login100-form-btn" onclick="verifyUser()">
                                     Verify Now
                                 </button>
                             </div>
@@ -68,16 +70,21 @@
             });
         });
 
-        function verifyUser(userId) {
+        function verifyUser() {
+            debugger;
             if ($("#frmVerify").valid()) {
                 $.ajax({
                     type: "POST",
-                    contentType: "application/json; charset=utf-8",
-                    url: "/Admin/VerifyUser",
-                    data: { verificationCode: $("#VerificationCode").val(), userId: userId},
+                    url: "/Admin/ValidateVerificationCode",
+                    data: { verificationCode: $("#VerificationCode").val(), userId: '@Guid.Parse(userId)'},
                     dataType: "json",
                     success: function (data) {
-                       
+                        if (data) {
+                            location.href = "/Dashboard/Index"
+                        }
+                        else {
+                            location.href = "Admin/VerifyUser"
+                        }
                     },
                     error: function () {
                         

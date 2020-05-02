@@ -130,22 +130,26 @@ namespace QuickEmail.Data.Repository
         /// <param name="verificationCode"></param>
         /// <returns></returns>
 
-        public bool VerifyUser(string verificationCode,Guid userId)
+        public User VerifyUser(string verificationCode, Guid userId)
         {
-            bool isValidVerificationCode = false;
+            var verifcationDetails = new User();
             if (!string.IsNullOrWhiteSpace(verificationCode))
             {
                 using (var dbConnection = quickEmaildbConnection)
                 {
-                    var verifcationCode = dbConnection.Query<string>(SqlStringConstant.GetVerifactionCodeByUserId,new {UserId= userId }).SingleOrDefault();
+                    verifcationDetails = dbConnection.Query<User>(SqlStringConstant.GetVerifactionCodeByUserId, new { UserId = userId }).SingleOrDefault();
 
-                    if(verifcationCode == verificationCode)
+                    if (verifcationDetails.VerificationCode == verificationCode)
                     {
-                        isValidVerificationCode = true;
+                        verifcationDetails.Status = "ValidUser";
+                    }
+                    else
+                    {
+                        verifcationDetails.Status = "InvalidUser";
                     }
                 }
             }
-            return isValidVerificationCode;
+            return verifcationDetails;
         }
 
         #endregion
