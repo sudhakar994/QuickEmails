@@ -113,11 +113,6 @@ namespace QuickEmail.Data.Repository
                     }
 
                     userDetail = user;
-
-
-
-
-
                 }
             }
             return userDetail;

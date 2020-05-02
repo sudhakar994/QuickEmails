@@ -142,11 +142,11 @@ namespace QuickEmail.Controllers
         /// <param name="userId"></param>
         /// <returns></returns>
         [HttpPost]
-        public JsonResult ValidateVerificationCode(string verificationCode, Guid userId)
+        public IActionResult ValidateVerificationCode(string verificationCode)
         {
             var verifyUserDetail = new User();
+            Guid userId = HttpContext.Session.GetString("UserId") != null ? Guid.Parse(HttpContext.Session.GetString("UserId").ToString()) : Guid.Empty;
 
-            bool isValidVerification = false;
             if (!string.IsNullOrEmpty(verificationCode) && userId != Guid.Empty)
             {
                 verifyUserDetail = adminRepository.VerifyUser(verificationCode, userId);
@@ -154,14 +154,15 @@ namespace QuickEmail.Controllers
                 {
                     HttpContext.Session.SetString("Email", verifyUserDetail.Email);
                     HttpContext.Session.SetString("UserName", verifyUserDetail.UserName);
-                    isValidVerification = true;
+                    return RedirectToAction("Index", "Dashboard");
                 }
                 else if (verifyUserDetail != null && verifyUserDetail.Status == "InvalidUser")
                 {
                     toastNotification.AddErrorToastMessage("Invalid Verification Code!");
+                    return RedirectToAction("VerifyUser", "Admin");
                 }
             }
-            return Json(isValidVerification);
+            return View();
         }
 
         #endregion
