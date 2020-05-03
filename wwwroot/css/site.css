@@ -250,6 +250,10 @@ a {
     height: 10px;
 }
 
+.modal-header {
+    background-color: bisque !important;
+}
+
 .btn-edit {
     border: 1px solid #00aeef;
     padding: 2px 10px;

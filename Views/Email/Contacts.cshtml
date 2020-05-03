@@ -1,0 +1,64 @@
+﻿
+@{
+    ViewData["Title"] = "Contacts";
+}
+
+
+<div class="searchbg">
+    <div class="container">
+        <div class="searchbox">
+            <h3>Contacts</h3>
+        </div>
+    </div>
+</div>
+<div class="clearfix spacer10"></div>
+<div class="container">
+    <a href="javascript:void(0);" onclick="addContact()" class="btnprimary btn-md float-right">Add Contacts</a>
+    <div class="clearfix spacer10"></div>
+    <table id="tblContacts" class="table">
+        <thead>
+            <tr>
+                <th>S.No.</th>
+                <th class="taC">Contact Name</th>
+                <th class="taC">Contact Email</th>
+                <th class="taC">Contact Address</th>
+                <th style="width:150px" class="taC">Action</th>
+            </tr>
+        </thead>
+        <tbody>
+
+
+            <tr>
+                <td>1</td>
+                <td>
+                    Sudhakaran
+                </td>
+                <td>
+                    Sudhakaran.s@dotnetethics.com
+                </td>
+                <td>
+                    Thanjavur
+                </td>
+                <td class="taC">
+                    <a href="javascript:void(0);" class="btn-edit" onclick="fnEditCategory()">Edit</a>
+                    <a href="javascript:void(0);" class="btn-delete" onclick="fnDeleteCategory()">Delete</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+@section Scripts {
+    <script type="text/javascript">
+
+        
+
+        function addContact() {
+            debugger;
+            $('#modalBody').load('/Email/_AddContacts');
+            $('#myModal').modal("show");
+        }
+
+
+    </script>
+}

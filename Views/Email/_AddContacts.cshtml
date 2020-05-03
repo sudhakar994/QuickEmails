@@ -1,0 +1,149 @@
+﻿
+@model QuickEmail.Models.Contacts
+@{ 
+
+}
+
+<body>
+    @using (Html.BeginForm("SaveContacts", "Email", FormMethod.Post, new { @Id = "frmAddContacts" }))
+    {
+
+        <div class="modal-header">
+
+
+            <h5 class="modal-title" id="modalheader">
+                @if (Model?.ContactId > 0)
+                {
+                    <span>Edit Contacts</span>
+                }
+                else
+                {
+                    <span>Add Contacts</span>
+                }
+
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+
+
+        </div>
+        <div class="modal-body AddVideo">
+            <div class="col-md-12 col-sm-12 col-xs-12 hidden-xs">
+
+                <div>
+
+                    <div>
+                        <div class="form-group">
+                            <label for="ArticleName"> <span class="red">*</span>Conatact Name</label>
+                            @Html.TextBoxFor(Model => Model.ContactName, new { @class = "form-control", @maxlength = "30" })
+                        </div>
+                        <div class="form-group">
+                            <label for="ArticleUrl"><span class="red">*</span>Contact Email</label>
+                            @Html.TextBoxFor(Model => Model.ContactEmail, new { @class = "form-control", @maxlength = "30" })
+                        </div>
+                        <div class="form-group">
+                            <label for="ArticleUrl"><span class="red">*</span> Contact Phone</label>
+                            @Html.TextBoxFor(Model => Model.ContactPhone, new { @class = "form-control", @maxlength = "14" })
+                        </div>
+                        <div class="form-group">
+                            <label for="ArticleUrl"><span class="red">*</span> Contact Country</label>
+                            @Html.TextBoxFor(Model => Model.Country, new { @class = "form-control", @maxlength = "30" })
+                        </div>
+                        <div class="form-group">
+                            <label for="ArticleUrl"><span class="red">*</span> User Domain</label>
+                            @Html.TextBoxFor(Model => Model.UserDomain, new { @class = "form-control", @maxlength = "30" })
+                        </div>
+                    </div>
+                </div>
+                <button onclick="Test()"></button>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class= "btn-primary" onclick="saveContacts()">Save Contacts</button>
+
+        </div>
+
+    }
+</body>
+
+
+
+@section Scripts {
+    <script>
+        $(function () {
+            debugger;
+            $("#frmAddContacts").validate({
+                ignore: ":not(:visible)",
+                rules: {
+                    ContactName: {
+                        required: true
+
+                    },
+                    ContactEmail: {
+                        required: true
+
+                    },
+                    ContactPhone: {
+                        required: true
+
+                    },
+                    ContactName: {
+                        required: true
+
+                    },
+                    Country: {
+                        required: true
+
+                    },
+                    UserDomain: {
+                        required: true
+
+                    }
+                },
+                messages: {
+                    ContactName: {
+                        required: "Contact name required"
+                    },
+                    ContactEmail: {
+                        required: "Contact email required"
+
+                    },
+                    ContactPhone: {
+                        required: "Contact phone required"
+
+                    },
+
+                    Country: {
+                        required: "Contact country required"
+
+                    },
+                    UserDomain: {
+                        required: "User domain required"
+
+                    },
+
+                }
+            });
+        });
+
+
+
+        function saveContacts() {
+            alert("test");
+            debugger;
+            if ($("#frmAddContacts").valid()) {
+                $("#frmAddContacts").submit();
+            }
+        }
+
+        function Test() {
+            alert("hi");
+        }
+    </script>
+
+
+
+}

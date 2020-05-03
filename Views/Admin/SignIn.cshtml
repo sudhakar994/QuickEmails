@@ -77,6 +77,8 @@
     <script>
         $(function () {
 
+
+          
             $('#frmSignIn').validate({
                 ignore: ":not(:visible)",
                 rules: {
@@ -103,6 +105,7 @@
         function signIn() {
             if ($("#frmSignIn").valid()) {
                 $("#frmSignIn").submit();
+              
             }
 
         }
