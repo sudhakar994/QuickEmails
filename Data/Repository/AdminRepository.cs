@@ -56,7 +56,7 @@ namespace QuickEmail.Data.Repository
                     {
                         user.Password = CommonMethods.EncryptPassword(user.Password, userDetails.PasswordSalt);
 
-                        if (userDetails.Email == user.Email && userDetails.Password == user.Password)
+                        if (userDetails.Email == user.Email && userDetails.Password == user.Password && userDetails.IsVerified)
                         {
                             userDetails.Status = "ValidUser";
 
@@ -142,7 +142,9 @@ namespace QuickEmail.Data.Repository
 
                     if (verifcationDetails.VerificationCode == verificationCode)
                     {
+                        dbConnection.Execute(SqlStringConstant.UpdatedVerification, new { UserId = userId });
                         verifcationDetails.Status = "ValidUser";
+
                     }
                     else
                     {
