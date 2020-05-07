@@ -923,6 +923,7 @@ footer {
     .table thead th {
         border: 1px solid #ccc !important;
         background: #f8f8f8;
+        color: green;
     }
 
     .table tbody td {
@@ -1062,11 +1063,36 @@ input[type="text"], input[type="search"], select {
     font-size: 15px;
 }*/
 
+label.error:before {
+    content: "\f06a";
+    position: absolute;
+    font-family: 'FontAwesome';
+    left: 7px;
+    top: -1px;
+    color: #d74313;
+    font-size: 15px;
+}
 label.error {
-    color: red;
+    margin: 0;
+    padding: 2px 5px 2px 25px;
+    box-sizing: border-box;
+    background: #fff;
+    box-shadow: 0px 0px 3px 0px rgba(0, 0, 0, 0.4);
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 1;
+    font-size: 13px;
+    border-radius: 2px;
+    border: 1px solid #d74313;
+    color: #333;
+    font-weight: normal;
+}
+label{
+    display:inline-block
 }
 
-    /*label.error:after {
+    label.error:after {
         content: "";
         position: absolute;
         width: 0;
@@ -1087,7 +1113,7 @@ label.error {
         transform: rotate(-43deg);
         box-shadow: -1px 1px 0px 0 rgb(215, 71, 87);
         background: #fff;
-    }*/
+    }
 
 .AddVideo .form-group {
     position: relative !important;
@@ -1368,6 +1394,3 @@ span, p {
     padding: 0;
 }
 
-table.dataTable thead tr {
-    background-color: blue;
-}

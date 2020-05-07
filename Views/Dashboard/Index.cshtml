@@ -3,60 +3,69 @@
     ViewData["Title"] = "Index";
 }
 
-   
-    
-    
-    <div class="searchbg">
-        <div class="container">
-            <div class="searchbox">
-                <h3>Dashboard</h3>
-            </div>
+
+
+
+<div class="searchbg">
+    <div class="container">
+        <div class="searchbox">
+            <h3>Dashboard</h3>
         </div>
     </div>
-  
-   
-        
-        <div class="spacer10"></div>
-        <div class="container">
-            <div class="container bootstrap snippet">
-                <div class="row">
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="mini-stat clearfix bg-facebook rounded">
-                            <span class="mini-stat-icon"><i class="fa fa-user fg-facebook"></i></span>
-                            <div class="mini-stat-info">
-                                <span>10</span>
-                                Total Contacts
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="mini-stat clearfix bg-twitter rounded">
-                            <span class="mini-stat-icon"><i class="fa fa-twitter fg-twitter"></i></span>
-                            <div class="mini-stat-info">
-                                <span>7,153</span>
-                                Twitter Followers
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-3 col-sm-6 col-xs-12">
-                        <div class="mini-stat clearfix bg-googleplus rounded">
-                            <span class="mini-stat-icon"><i class="fa fa-google-plus fg-googleplus"></i></span>
-                            <div class="mini-stat-info">
-                                <span>793</span>
-                                Google+ Posts
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                        <div class="mini-stat clearfix bg-bitbucket rounded">
-                            <span class="mini-stat-icon"><i class="fa fa-bitbucket fg-bitbucket"></i></span>
-                            <div class="mini-stat-info">
-                                <span>8,932</span>
-                                Repository
-                            </div>
-                        </div>
+</div>
+
+
+
+<div class="spacer10"></div>
+<div class="container">
+    <div class="container bootstrap snippet">
+        <div class="row">
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="mini-stat clearfix bg-facebook rounded">
+                    <span class="mini-stat-icon"><i class="fa fa-users fg-facebook"></i></span>
+                    <div class="mini-stat-info">
+                        <span>10</span>
+                        Total Contacts
                     </div>
                 </div>
             </div>
-
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="mini-stat clearfix bg-twitter rounded">
+                    <span class="mini-stat-icon"><i class="fa fa-reply-all fg-twitter"></i></span>
+                    <div class="mini-stat-info">
+                        <span>7,153</span>
+                        Total Email Sent
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-6 col-xs-12">
+                <div class="mini-stat clearfix bg-googleplus rounded">
+                    <span class="mini-stat-icon"><i class="fa fa-handshake-o fg-googleplus"></i></span>
+                    <div class="mini-stat-info">
+                        <span>793</span>
+                       Leads
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                <div class="mini-stat clearfix bg-bitbucket rounded">
+                    <span class="mini-stat-icon"><i class="fa fa-hand-o-up fg-bitbucket"></i></span>
+                    <div class="mini-stat-info">
+                        <span>8,932</span>
+                        Clicks
+                    </div>
+                </div>
+            </div>
         </div>
+    </div>
+
+</div>
+@section Scripts {
+
+    <script type="text/javascript">
+        $(function () {
+            $("#lidashboard").addClass('active')
+        })
+
+    </script>
+}

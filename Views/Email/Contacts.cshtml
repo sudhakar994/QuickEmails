@@ -52,6 +52,9 @@
 
     <script type="text/javascript">
 
+        $(function () {
+            $("#licontacts").addClass('active')
+        })
         $('#tblContacts').DataTable({
             "oLanguage": {
                 "sEmptyTable": "No contacts found"
@@ -63,8 +66,8 @@
         });
 
         function addContact() {
-             $('#modalBody').load('/Email/_AddContacts');
-        $('#myModal').modal("show");
+            $('#modalBody').load('/Email/_AddContacts');
+            $('#myModal').modal("show");
         }
 
     </script>
