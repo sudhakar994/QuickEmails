@@ -3,60 +3,45 @@
     ViewData["Title"] = "Index";
 }
 
-<div class="container">
-    <div class="searchbg">
-        <div class="container">
-            <div class="searchbox">
-                <h5 class="modal-title" id="modalHeader">
-                    <span>Dashboard</span>
-                </h5>
+    <div class="container">
+        <h4 style="color:blue">Dashboard</h4>
+    </div>
+
+<div class="container bootstrap snippet">
+    <div class="row">
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="mini-stat clearfix bg-facebook rounded">
+                <span class="mini-stat-icon"><i class="fa fa-user fg-facebook"></i></span>
+                <div class="mini-stat-info">
+                    <span>10</span>
+                    Total Contacts
+                </div>
             </div>
         </div>
-    </div>
-    <div>
-        <div>
-            <div class="row">
-                <div class="col-md-3 noPad nopadR">
-                    <a class="dash-detail one-time-process" style="cursor:pointer" onclick="SignUpUserDetail('today')">
-                        <table>
-                            <tr>
-                                <td class="vaM">
-                                    Total Contacts
-                                </td>
-                                <td class="vaM taR">
-                                    <div class="new-dash-count"><span>20</span></div>
-                                </td>
-                            </tr>
-                        </table>
-                    </a>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="mini-stat clearfix bg-twitter rounded">
+                <span class="mini-stat-icon"><i class="fa fa-twitter fg-twitter"></i></span>
+                <div class="mini-stat-info">
+                    <span>7,153</span>
+                    Twitter Followers
                 </div>
-                <div class="col-md-3 noPad nopadR">
-                    <a class="dash-detail one-time-process" style="cursor:pointer" onclick="SignUpUserDetail('today')">
-                        <table>
-                            <tr>
-                                <td class="vaM">
-                                    Templates
-                                </td>
-                                <td class="vaM taR">
-                                    <div class="new-dash-count"><span>0</span></div>
-                                </td>
-                            </tr>
-                        </table>
-                    </a>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-6 col-xs-12">
+            <div class="mini-stat clearfix bg-googleplus rounded">
+                <span class="mini-stat-icon"><i class="fa fa-google-plus fg-googleplus"></i></span>
+                <div class="mini-stat-info">
+                    <span>793</span>
+                    Google+ Posts
                 </div>
-                <div class="col-md-3 noPad nopadR">
-                    <a class="dash-detail one-time-process" style="cursor:pointer" onclick="SignUpUserDetail('today')">
-                        <table>
-                            <tr>
-                                <td class="vaM">
-                                    Campaigns
-                                </td>
-                                <td class="vaM taR">
-                                    <div class="new-dash-count"><span>0</span></div>
-                                </td>
-                            </tr>
-                        </table>
-                    </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+            <div class="mini-stat clearfix bg-bitbucket rounded">
+                <span class="mini-stat-icon"><i class="fa fa-bitbucket fg-bitbucket"></i></span>
+                <div class="mini-stat-info">
+                    <span>8,932</span>
+                    Repository
                 </div>
             </div>
         </div>

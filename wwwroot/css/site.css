@@ -109,11 +109,12 @@ header.layoutheader {
 }
 
 .fixnav {
+    padding: 9px;
     background: #fff;
     position: fixed;
     width: 100%;
     z-index: 1000;
-    box-shadow: 0 0 10px rgba(0,0,0,.2);
+    box-shadow: 0 0 10px rgba(0,0,0,.2)
 }
 
 a {
@@ -129,13 +130,14 @@ a {
 
 
 .fixnav a.nav-link {
-    font-size: 15px;
-    color: #666666 !important;
+    font-size: 19px;
+    color: #452ad6 !important;
     max-height: 25px;
     padding: 0px 10px !important;
     position: relative;
     line-height: 22px;
     font-weight: normal;
+    font-family: none
 }
 
 .fixnav li.active a.nav-link {
@@ -1299,7 +1301,7 @@ a.dash-detail {
 }
 
 .logotext {
-    color: #771577;
+    color: #3b47dc;
 }
 row .input-field input:focus {
     border-bottom: 2px solid #0f0fde !important;
@@ -1321,4 +1323,87 @@ label.gfield_label {
     font-weight: 600 !important;
     color: #0f5ba7 !important;
     font-size: 14px !important;
+}
+
+.rounded {
+    -webkit-border-radius: 3px !important;
+    -moz-border-radius: 3px !important;
+    border-radius: 3px !important;
+}
+
+.mini-stat {
+    padding: 15px;
+    margin-bottom: 20px;
+}
+
+.mini-stat-icon {
+    width: 60px;
+    height: 60px;
+    display: inline-block;
+    line-height: 60px;
+    text-align: center;
+    font-size: 30px;
+    background: none repeat scroll 0% 0% #EEE;
+    border-radius: 100%;
+    float: left;
+    margin-right: 10px;
+    color: #FFF;
+}
+
+.mini-stat-info {
+    font-size: 12px;
+    padding-top: 2px;
+}
+
+span, p {
+    color: white;
+}
+
+.mini-stat-info span {
+    display: block;
+    font-size: 30px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    margin-top: 7px;
+}
+
+/* ================ colors =====================*/
+.bg-facebook {
+    background-color: #3b5998 !important;
+    border: 1px solid #3b5998;
+    color: white;
+}
+
+.fg-facebook {
+    color: #3b5998 !important;
+}
+
+.bg-twitter {
+    background-color: #00a0d1 !important;
+    border: 1px solid #00a0d1;
+    color: white;
+}
+
+.fg-twitter {
+    color: #00a0d1 !important;
+}
+
+.bg-googleplus {
+    background-color: #db4a39 !important;
+    border: 1px solid #db4a39;
+    color: white;
+}
+
+.fg-googleplus {
+    color: #db4a39 !important;
+}
+
+.bg-bitbucket {
+    background-color: #205081 !important;
+    border: 1px solid #205081;
+    color: white;
+}
+
+.fg-bitbucket {
+    color: #205081 !important;
 }
