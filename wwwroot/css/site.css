@@ -1,52 +1,7 @@
 ﻿
-@font-face {
-    font-family: 'ProximaNova-Extrabld';
-    src: url('/Content/Fonts/ProximaNova-Extrabld.eot');
-    src: url('/Content/Fonts/ProximaNova-Extrabld.eot?#iefix') format('embedded-opentype'), url('/Content/Fonts/ProximaNova-Extrabld.ttf') format('truetype'), url('/Content/Fonts/ProximaNova-Extrabld.woff') format('woff'), url('/Content/Fonts/ProximaNova-Extrabld.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
 
 
-@font-face {
-    font-family: 'ProximaNova-Black';
-    src: url('/Content/Fonts/ProximaNova-Black.eot');
-    src: url('/Content/Fonts/ProximaNova-Black.eot?#iefix') format('embedded-opentype'), url('/Content/Fonts/ProximaNova-Black.ttf') format('truetype'), url('/Content/Fonts/ProximaNova-Black.woff') format('woff'), url('/Content/Fonts/ProximaNova-Black.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
 
-@font-face {
-    font-family: 'ProximaNova-Bold';
-    src: url('/Content/Fonts/ProximaNova-Bold.eot');
-    src: url('/Content/Fonts/ProximaNova-Bold.eot?#iefix') format('embedded-opentype'), url('/Content/Fonts/ProximaNova-Bold.svg#ProximaNova-Bold') format('svg'), url('/Content/Fonts/ProximaNova-Bold.ttf') format('truetype'), url('/Content/Fonts/ProximaNova-Bold.woff') format('woff'), url('/Content/Fonts/ProximaNova-Bold.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'ProximaNovaA-Light';
-    src: url('/Content/Fonts/ProximaNovaA-Light.eot');
-    src: url('/Content/Fonts/ProximaNovaA-Light.eot?#iefix') format('embedded-opentype'), url('/Content/Fonts/ProximaNovaA-Light.svg#ProximaNovaA-Light') format('svg'), url('/Content/Fonts/ProximaNovaA-Light.ttf') format('truetype'), url('/Content/Fonts/ProximaNovaA-Light.woff') format('woff'), url('/Content/Fonts/ProximaNovaA-Light.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'ProximaNova-Regular';
-    src: url('/Content/Fonts/ProximaNova-Regular.eot');
-    src: url('/Content/Fonts/ProximaNova-Regular.eot?#iefix') format('embedded-opentype'), url('/Content/Fonts/ProximaNova-Regular.svg#ProximaNova-Regular') format('svg'), url('/Content/Fonts/ProximaNova-Regular.ttf') format('truetype'), url('/Content/Fonts/ProximaNova-Regular.woff') format('woff'), url('/Content/Fonts/ProximaNova-Regular.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
-
-@font-face {
-    font-family: 'ProximaNovaA-Thin';
-    src: url('/Content/Fonts/ProximaNovaA-Thin.eot');
-    src: url('/Content/Fonts/ProximaNovaA-Thin.eot?#iefix') format('embedded-opentype'), url('/Content/Fonts/ProximaNovaA-Thin.svg#ProximaNovaA-Thin') format('svg'), url('/Content/Fonts/ProximaNovaA-Thin.ttf') format('truetype'), url('/Content/Fonts/ProximaNovaA-Thin.woff') format('woff'), url('/Content/Fonts/ProximaNovaA-Thin.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
 
 html {
     min-height: 100%;
@@ -253,7 +208,7 @@ a {
 }
 
 .modal-header {
-    background-color: bisque !important;
+    background-color: #7f40d2 !important;
 }
 
 .btn-edit {
@@ -1406,4 +1361,13 @@ span, p {
 
 .fg-bitbucket {
     color: #205081 !important;
+}
+#custom-search-input {
+    margin: 0;
+    margin-top: 10px;
+    padding: 0;
+}
+
+table.dataTable thead tr {
+    background-color: blue;
 }

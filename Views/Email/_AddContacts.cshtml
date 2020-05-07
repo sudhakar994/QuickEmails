@@ -36,6 +36,7 @@
                     <div>
                         <div class="form-group">
                             <label for="ArticleName"> <span class="red">*</span>Conatact Name</label>
+                            <span class="fa fa-envelope" aria-hidden="true"></span>
                             @Html.TextBoxFor(Model => Model.ContactName, new { @class = "form-control", @maxlength = "30" })
                         </div>
                         <div class="form-group">
@@ -56,13 +57,12 @@
                         </div>
                     </div>
                 </div>
-                <button onclick="Test()"></button>
 
             </div>
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class= "btn-primary" onclick="saveContacts()">Save Contacts</button>
+            <button type="button" class="btn btn-primary" onclick="fnSaveDocument()">Save Document</button>
 
         </div>
 

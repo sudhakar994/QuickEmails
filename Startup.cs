@@ -41,6 +41,8 @@ namespace QuickEmail
                 PositionClass = ToastPositions.TopCenter,
                 TapToDismiss = true
             });
+            
+          
             services.AddRazorPages()
         .AddRazorRuntimeCompilation();
 

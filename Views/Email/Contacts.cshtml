@@ -49,16 +49,23 @@
 </div>
 
 @section Scripts {
+
     <script type="text/javascript">
 
-        
+        $('#tblContacts').DataTable({
+            "oLanguage": {
+                "sEmptyTable": "No contacts found"
+            },
+            'aoColumnDefs': [{
+                'bSortable': false,
+                'aTargets': [-1]
+            }]
+        });
 
         function addContact() {
-            debugger;
-            $('#modalBody').load('/Email/_AddContacts');
-            $('#myModal').modal("show");
+             $('#modalBody').load('/Email/_AddContacts');
+        $('#myModal').modal("show");
         }
-
 
     </script>
 }
