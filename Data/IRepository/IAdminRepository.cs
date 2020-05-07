@@ -11,5 +11,6 @@ namespace QuickEmail.Data.IRepository
         User GetUserDetails(User user);
         User UserRegister(User user);
         User VerifyUser(string verificationCode, Guid userId);
+
     }
 }

@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NToastNotify;
 using QuickEmail.Data.IRepository;
 using QuickEmail.Models;
 using QuickEmail.Utility;
@@ -12,9 +13,11 @@ namespace QuickEmail.Controllers
     public class EmailController : Controller
     {
         private readonly IEmailRepository emailRepository;
-        public EmailController(IEmailRepository emailRepository)
+        private readonly IToastNotification toastNotification;
+        public EmailController(IEmailRepository emailRepository, IToastNotification toastNotification)
         {
             this.emailRepository = emailRepository;
+            this.toastNotification = toastNotification;
         }
 
         public IActionResult Index()
@@ -37,8 +40,13 @@ namespace QuickEmail.Controllers
 
         public IActionResult Contacts()
         {
-
-            return View();
+            var contactDetails = new ContactDetails();
+            Guid userId = HttpContext.Session.GetString("UserId") != null ? Guid.Parse(HttpContext.Session.GetString("UserId").ToString()) : Guid.Empty;
+            if (userId != Guid.Empty)
+            {
+                contactDetails = emailRepository.GetContactDetails(userId);
+            }
+            return View(contactDetails);
         }
 
         #endregion
@@ -62,12 +70,19 @@ namespace QuickEmail.Controllers
         /// <param name="contacts"></param>
         /// <returns></returns>
 
-            [HttpPost]
+        [HttpPost]
         public JsonResult SaveContacts(Contacts contacts)
         {
+            bool isSavedContacts = false;
+            Guid userId = HttpContext.Session.GetString("UserId") != null ? Guid.Parse(HttpContext.Session.GetString("UserId").ToString()) : Guid.Empty;
+            if (userId != Guid.Empty)
+            {
+                contacts.UserId = userId;
+                isSavedContacts = emailRepository.SaveContacts(contacts);
+               
+            }
 
-
-            return Json(true);
+            return Json(isSavedContacts);
         }
 
         #endregion

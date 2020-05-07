@@ -35,7 +35,7 @@
 
                     <div>
                         <div class="form-group">
-                            <label for="ArticleName"> <span class="red">*</span>Conatact Name</label>
+                            <label for="ArticleName"> <span class="red">*</span>Contact Name</label>
 
                             @Html.TextBoxFor(Model => Model.ContactName, new { @class = "form-control", @maxlength = "30" })
 
@@ -45,15 +45,15 @@
                             @Html.TextBoxFor(Model => Model.ContactEmail, new { @class = "form-control", @maxlength = "30" })
                         </div>
                         <div class="form-group">
-                            <label for="ArticleUrl"><span class="red">*</span> Contact Phone</label>
+                            <label for="ArticleUrl"><span class="red">*</span>Contact Phone</label>
                             @Html.TextBoxFor(Model => Model.ContactPhone, new { @class = "form-control", @maxlength = "14" })
                         </div>
                         <div class="form-group">
-                            <label for="ArticleUrl"><span class="red">*</span> Contact Country</label>
+                            <label for="ArticleUrl"><span class="red">*</span>Contact Country</label>
                             @Html.TextBoxFor(Model => Model.Country, new { @class = "form-control", @maxlength = "30" })
                         </div>
                         <div class="form-group">
-                            <label for="ArticleUrl"><span class="red">*</span> User Domain</label>
+                            <label for="ArticleUrl"><span class="red">*</span>User Domain</label>
                             @Html.TextBoxFor(Model => Model.UserDomain, new { @class = "form-control", @maxlength = "30" })
                         </div>
                     </div>
@@ -132,10 +132,28 @@
 
 
         function fnSaveDocument() {
-            debugger;
+            debugger
             if ($("#frmAddContacts").valid()) {
-                $("#frmAddContacts").submit();
+                 var form = $("#frmAddContacts").serialize();
+            $.ajax({
+                type: "POST",
+                url: "/Email/SaveContacts",
+                cache: false,
+                data: form,
+                success: function (data) {
+                    if (true) {
+                        toastr.success("Contacts saved successfully")
+                        $("#myModal").modal('hide');
+                        location.reload();
+                    }
+                    else {
+                           toastr.error("Unable to add contacts")
+                    }
+
+                }
+            });
             }
+           
         }
 
 
