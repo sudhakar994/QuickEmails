@@ -25,39 +25,40 @@
                 <th class="taC">Phone</th>
                 <th class="taC">Country</th>
                 <th class="taC">User Domain</th>
-                <th style="width:150px" class="taC">Action</th>
+                <th style="width:250px" class="taC">Action</th>
             </tr>
         </thead>
         <tbody>
             @if (Model?.Contacts?.Any() == true)
             {
-                @foreach (var item in Model.Contacts.ToList())
+                @foreach (var item in Model.Contacts.OrderByDescending(x=>x.CreateTimeStamp).ToList())
                 {
-            <tr>
-                <td>@i</td>
-                <td>
-                    @item.ContactName
-                </td>
-                <td>
-                    @item.ContactEmail
-                </td>
-                <td>
-                    @item.ContactPhone
-                </td>
-                <td>
-                    @item.Country
-                </td>
-                <td>
-                    @item.UserDomain
-                </td>
-                <td class="taC">
-                    <a href="javascript:void(0);" class="btn-edit" onclick="fnEditCategory()">Edit</a>
-                    <a href="javascript:void(0);" class="btn-delete" onclick="fnDeleteCategory()">Delete</a>
-                </td>
-            </tr>
-             i++;
+                    <tr>
+                        <td>@i</td>
+                        <td>
+                            @item.ContactName
+                        </td>
+                        <td>
+                            @item.ContactEmail
+                        </td>
+                        <td>
+                            @item.ContactPhone
+                        </td>
+                        <td>
+                            @item.Country
+                        </td>
+                        <td>
+                            @item.UserDomain
+                        </td>
+                        <td class="taC">
+                            <a href="javascript:void(0);" class="btn-edit" onclick="fnEditCategory()">Send Email</a>
+                            <a href="javascript:void(0);" class="btn-edit" onclick="fnEditCategory()">Edit</a>
+                            <a href="javascript:void(0);" class="btn-delete" onclick="fnDeleteCategory()">Delete</a>
+                        </td>
+                    </tr>
+                    i++;
                 }
-               
+
             }
 
         </tbody>
@@ -78,7 +79,9 @@
             'aoColumnDefs': [{
                 'bSortable': false,
                 'aTargets': [-1]
-            }]
+            }],
+            
+            
         });
 
         function addContact() {

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Net.Mail;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using NToastNotify;
@@ -79,7 +80,7 @@ namespace QuickEmail.Controllers
             {
                 contacts.UserId = userId;
                 isSavedContacts = emailRepository.SaveContacts(contacts);
-               
+
             }
 
             return Json(isSavedContacts);
@@ -87,6 +88,21 @@ namespace QuickEmail.Controllers
 
         #endregion
 
+        public ActionResult SendEmail()
+        {
+            MailMessage mail = new MailMessage();
+            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
+            mail.From = new MailAddress("sksmtechworld@gmail.com");
+            mail.To.Add("sksmtechworld@gmail.com");
+            mail.Subject = "Test";
+            mail.Body = "Report";
+            SmtpServer.Port = 25;
+            SmtpServer.Credentials = new System.Net.NetworkCredential("sksmtechworld@gmail.com", "7708suuu");
+            SmtpServer.EnableSsl = true;
+            SmtpServer.UseDefaultCredentials = true;
+            SmtpServer.Send(mail);
+            return View();
+        }
     }
 }

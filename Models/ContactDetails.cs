@@ -25,5 +25,6 @@ namespace QuickEmail.Models
         public string Country { get; set; }
 
         public string UserDomain { get; set; }
+        public DateTime CreateTimeStamp { get; set; }
     }
 }
