@@ -1349,8 +1349,8 @@ span, p {
 
 /* ================ colors =====================*/
 .bg-facebook {
-    background-color: #3b5998 !important;
-    border: 1px solid #3b5998;
+    background-color: #f8f9fa !important;
+    border: 3px solid #e4cece;
     color: white;
 }
 
