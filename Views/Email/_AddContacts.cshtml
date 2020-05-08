@@ -63,7 +63,7 @@
         </div>
         <div class="modal-footer">
             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary" onclick="fnSaveDocument()">Save Document</button>
+            <button type="button" class="btn btn-primary" onclick="fnSaveDocument()">Save Contacts</button>
 
         </div>
 
@@ -74,7 +74,7 @@
 
     <script>
         $(function () {
-            debugger;
+
             $("#frmAddContacts").validate({
                 ignore: ":not(:visible)",
                 rules: {
@@ -132,7 +132,6 @@
 
 
         function fnSaveDocument() {
-            debugger
             if ($("#frmAddContacts").valid()) {
                  var form = $("#frmAddContacts").serialize();
             $.ajax({

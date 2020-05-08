@@ -38,7 +38,7 @@ namespace QuickEmail.Data.Repository
         public bool SaveContacts(Contacts contacts)
         {
             bool isSavedContacts = false;
-
+           
             if (contacts != null && contacts.UserId != Guid.Empty)
             {
                 using (var dbConnection = quickEmaildbConnection)

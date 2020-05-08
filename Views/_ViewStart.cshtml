@@ -1,13 +1,13 @@
 ﻿@using Microsoft.AspNetCore.Http;
 
 @{
-    var sessionEmail = Html.ViewContext.HttpContext.Session.GetString("Email") != null ? Html.ViewContext.HttpContext.Session.GetString("Email").ToString() : string.Empty ;
-
+   
+    var verificationSuccess =Html.ViewContext.HttpContext.Session.GetString("VerifictionSuccess") != null ? Html.ViewContext.HttpContext.Session.GetString("VerifictionSuccess").ToString() : string.Empty ;
 }
 
 
 
-@if (!string.IsNullOrEmpty(sessionEmail))
+@if (!string.IsNullOrEmpty(verificationSuccess))
 {
     Layout = "_Layout";
 }

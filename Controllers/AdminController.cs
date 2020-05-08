@@ -51,6 +51,7 @@ namespace QuickEmail.Controllers
                     HttpContext.Session.SetString("Email", userDetails.Email);
                     HttpContext.Session.SetString("UserName", userDetails.UserName);
                     HttpContext.Session.SetString("UserId", userDetails.UserId.ToString());
+                    HttpContext.Session.SetString("VerifictionSuccess", "VerificationSuccess");
                     return RedirectToAction("Index", "Dashboard");
                 }
             }
@@ -107,6 +108,7 @@ namespace QuickEmail.Controllers
                 if (userDetail != null && userDetail.Status == "Success")
                 {
                     HttpContext.Session.SetString("UserId", userDetail.UserId.ToString());
+                    HttpContext.Session.SetString("Email", userDetail.Email);
                     return RedirectToAction("VerifyUser", "Admin");
                 }
                 else
@@ -130,7 +132,8 @@ namespace QuickEmail.Controllers
         
         public IActionResult VerifyUser()
         {
-           
+        
+
             return View();
         }
 
@@ -157,6 +160,7 @@ namespace QuickEmail.Controllers
                 {
                     HttpContext.Session.SetString("Email", verifyUserDetail.Email);
                     HttpContext.Session.SetString("UserName", verifyUserDetail.UserName);
+                    HttpContext.Session.SetString("VerifictionSuccess", "VerificationSuccess");
                     return RedirectToAction("Index", "Dashboard");
                 }
                 else if (verifyUserDetail != null && verifyUserDetail.Status == "InvalidUser")

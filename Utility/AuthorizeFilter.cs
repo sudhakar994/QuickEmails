@@ -25,14 +25,10 @@ namespace QuickEmail.Utility
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             Controller controller = context.Controller as Controller;
-
-            var email = context.HttpContext.Session.GetString("Email");
-            var userName = context.HttpContext.Session.GetString("UserName");
-            var UserId = context.HttpContext.Session.GetString("UserId");
-            var inVerification = context.HttpContext.Session.GetString("InVerification");
+            var verificationsuccess = context.HttpContext.Session.GetString("VerifictionSuccess");
             if (controller != null)
             {
-                if (string.IsNullOrEmpty(userName) && string.IsNullOrEmpty(email))
+                if (string.IsNullOrEmpty(verificationsuccess))
                 {
                     context.Result =
                            new RedirectToRouteResult(
@@ -41,9 +37,6 @@ namespace QuickEmail.Utility
 
                                                              });
                 }
-               
-
-
             }
             base.OnActionExecuting(context);
 

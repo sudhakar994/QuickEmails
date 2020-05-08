@@ -2,6 +2,7 @@
 @model QuickEmail.Models.User;
 @{
     ViewData["Title"] = "verification";
+    var email = Html.ViewContext.HttpContext.Session.GetString("Email") != null ? Html.ViewContext.HttpContext.Session.GetString("Email").ToString() : "your email" ;
 }
 <style>
 
@@ -432,7 +433,7 @@
                             <h2>Verify your Account</h2>
                             <p>
                                 Check your email!
-                                We’ve sent a six-digit confirmation code to <strong>sksmtechworld@gmail.com</strong>. Enter it below to confirm your email address.
+                                We’ve sent a six-digit confirmation code to <strong>@email</strong>. Enter it below to confirm your email address.
                             </p>
                             <form>
                                 <div class="input-group">

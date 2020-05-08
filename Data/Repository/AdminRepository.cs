@@ -107,6 +107,7 @@ namespace QuickEmail.Data.Repository
                         if (user.UserId != Guid.Empty)
                         {
                             user.Status = "Success";
+                            userDetail.Email = user.Email;
                         }
                         else
                         {
