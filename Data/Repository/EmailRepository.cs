@@ -38,7 +38,7 @@ namespace QuickEmail.Data.Repository
         public bool SaveContacts(Contacts contacts)
         {
             bool isSavedContacts = false;
-           
+
             if (contacts != null && contacts.UserId != Guid.Empty)
             {
                 using (var dbConnection = quickEmaildbConnection)
@@ -46,7 +46,7 @@ namespace QuickEmail.Data.Repository
                     var contactId = dbConnection.Query<long>(SqlStringConstant.GetContactId, contacts).SingleOrDefault();
                     if (contactId > 0)
                     {
-                        dbConnection.Execute(SqlStringConstant.UpdateContactsbByContactId);
+                        dbConnection.Execute(SqlStringConstant.UpdateContactsbByContactId, contacts);
                         isSavedContacts = true;
                     }
                     else
@@ -86,6 +86,25 @@ namespace QuickEmail.Data.Repository
             }
             return contactDetails;
 
+        }
+
+
+
+        #endregion
+
+
+        #region
+
+        public Contacts GetContacts(long? contactId)
+        {
+            var contacts = new Contacts();
+            {
+                using (var dbConnection = quickEmaildbConnection)
+                {
+                    contacts = dbConnection.Query<Contacts>(SqlStringConstant.GetContactsByContactId, new { ContactId = contactId }).SingleOrDefault();
+                }
+            }
+            return contacts;
         }
 
         #endregion

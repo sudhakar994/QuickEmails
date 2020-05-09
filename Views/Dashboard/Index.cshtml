@@ -5,72 +5,80 @@
 
 
 
+<div id="divLoader" style="display:none"> <img src="~/images/ajax-loader (1).gif" alt="Loader" /> </div>
+<div id="contacts" style="display:none">
+    <div class="searchbg">
+        <div class="container">
+            <div class="searchbox">
+                <h3>Dashboard</h3>
+            </div>
+        </div>
+    </div>
 
-<div class="searchbg">
+
+
+    <div class="spacer10"></div>
+
     <div class="container">
-        <div class="searchbox">
-            <h3>Dashboard</h3>
-        </div>
-    </div>
-</div>
+        <div class="container bootstrap snippet">
+            <div class="row">
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="mini-stat clearfix bg-facebook rounded">
+                        <span class="mini-stat-icon"><i class="fa fa-users fg-facebook"></i></span>
+                        <div class="mini-stat-info">
+                            <span style="color:black">108</span>
 
-
-
-<div class="spacer10"></div>
-<div class="container">
-    <div class="container bootstrap snippet">
-        <div class="row">
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="mini-stat clearfix bg-facebook rounded">
-                    <span class="mini-stat-icon"><i class="fa fa-users fg-facebook"></i></span>
-                    <div class="mini-stat-info">
-                        <span style="color:black">108</span>
-                      
+                        </div>
+                        <span style="color:rebeccapurple">  Total Contacts</span>
                     </div>
-                    <span style="color:rebeccapurple">  Total Contacts</span>
                 </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="mini-stat clearfix bg-facebook rounded">
-                    <span class="mini-stat-icon"><i class="fa fa-paper-plane fg-facebook"></i></span>
-                    <div class="mini-stat-info">
-                        <span style="color:black">50</span>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="mini-stat clearfix bg-facebook rounded">
+                        <span class="mini-stat-icon"><i class="fa fa-paper-plane fg-facebook"></i></span>
+                        <div class="mini-stat-info">
+                            <span style="color:black">50</span>
 
+                        </div>
+                        <span style="color:rebeccapurple">  Total Sent</span>
                     </div>
-                    <span style="color:rebeccapurple">  Total Sent</span>
                 </div>
-            </div>
-            <div class="col-md-3 col-sm-6 col-xs-12">
-                <div class="mini-stat clearfix bg-facebook rounded">
-                    <span class="mini-stat-icon"><i class="fa fa-eye fg-facebook"></i></span>
-                    <div class="mini-stat-info">
-                        <span style="color:black">17</span>
+                <div class="col-md-3 col-sm-6 col-xs-12">
+                    <div class="mini-stat clearfix bg-facebook rounded">
+                        <span class="mini-stat-icon"><i class="fa fa-eye fg-facebook"></i></span>
+                        <div class="mini-stat-info">
+                            <span style="color:black">17</span>
 
+                        </div>
+                        <span style="color:rebeccapurple">  Views</span>
                     </div>
-                    <span style="color:rebeccapurple">  Views</span>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
-                <div class="mini-stat clearfix bg-facebook rounded">
-                    <span class="mini-stat-icon"><i class="fa fa-hand-o-up fg-facebook"></i></span>
-                    <div class="mini-stat-info">
-                        <span style="color:black">40</span>
+                <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                    <div class="mini-stat clearfix bg-facebook rounded">
+                        <span class="mini-stat-icon"><i class="fa fa-hand-o-up fg-facebook"></i></span>
+                        <div class="mini-stat-info">
+                            <span style="color:black">40</span>
 
+                        </div>
+                        <span style="color:rebeccapurple">Clicks</span>
                     </div>
-                    <span style="color:rebeccapurple">Clicks</span>
                 </div>
             </div>
         </div>
+
     </div>
-
 </div>
-
 
 @section Scripts {
 
     <script type="text/javascript">
         $(function () {
-            $("#lidashboard").addClass('active')
+            $("#lidashboard").addClass('active');
+          
+            $("#divLoader").show();
+            $("#contacts").delay(1500).fadeIn();
+            setTimeout(function () {
+                $('#divLoader').fadeOut('fast');
+            }, 1000);
         })
 
     </script>

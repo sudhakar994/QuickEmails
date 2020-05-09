@@ -424,54 +424,55 @@
 @using (Html.BeginForm("UserSignIn", "Admin", FormMethod.Post, new { @Id = "frmSignIn" }))
 {
 
-    <body>
-        <div class="signupform">
-            <div class="container">
-                <!-- main content -->
-                <div class="agile_info">
-                    <div class="w3l_form">
-                        <div class="left_grid_info">
-                            <h1>Manage Your  Account</h1>
-                            <p>Quick Emails To Manage your Customers</p>
-                            <img src="~/images/image.jpg" alt="" />
-                        </div>
-                    </div>
-                    <div class="w3_info">
-                        <h2>Login to your Account</h2>
-                        <p>Enter your details to login.</p>
-                        <form>
-                            <label>Email Address</label>
-                            <div class="input-group">
-                                <span class="fa fa-envelope" aria-hidden="true"></span>
-                                <input type="email" id="Email" name="Email" placeholder="Enter Your Email" required="">
-                            </div>
-                            <label>Password</label>
-                            <div class="input-group">
-                                <span class="fa fa-lock" aria-hidden="true"></span>
-                                <input type="Password" id="Password" name="Password" placeholder="Enter Password" required="">
-                            </div>
-                           
-                            <button class="btn btn-danger btn-block" type="submit">Login</button>
-                        </form>
-                        <p class="account">By clicking login, you agree to our <a href="#">Terms & Conditions!</a></p>
-                        <p class="account1">Dont have an account? <a href="/Admin/Register">Register here</a></p>
+<body>
+    <div class="signupform">
+        <div class="container">
+            <!-- main content -->
+            <div class="agile_info">
+                <div class="w3l_form">
+                    <div class="left_grid_info">
+                        <h1>Manage Your  Account</h1>
+                        <p>Quick Emails To Manage your Customers</p>
+                        <img src="~/images/image.jpg" alt="" />
                     </div>
                 </div>
-                <!-- //main content -->
+                <div class="w3_info">
+                    <h2>Login to your Account</h2>
+                    <p>Enter your details to login.</p>
+                    <form>
+                        <label>Email Address</label>
+                        <div class="input-group">
+                            <span class="fa fa-envelope" aria-hidden="true"></span>
+                            <input type="email" id="Email" name="Email" placeholder="Enter Your Email" required="">
+                        </div>
+                        <label>Password</label>
+                        <div class="input-group">
+                            <span class="fa fa-lock" aria-hidden="true"></span>
+                            <input type="Password" id="Password" name="Password" placeholder="Enter Password" required="">
+                        </div>
+
+                        <button class="btn btn-danger btn-block buttonload" type="submit"><i id="ILogin" style="display:none" class="fa fa-spinner fa-pulse fa-1x fa-fw"></i>Login</button>
+                    </form>
+                    <p class="account">By clicking login, you agree to our <a href="#">Terms & Conditions!</a></p>
+                    <p class="account1">Dont have an account? <a href="/Admin/Register">Register here</a></p>
+                </div>
             </div>
-
-
+            <!-- //main content -->
         </div>
 
-    </body>
-   
-}
 
+    </div>
+
+</body>
+
+}
 
 @section Scripts {
     <script>
         function signIn() {
+            debugger
             if ($("#frmSignIn").valid()) {
+                $("#ILogin").show();
                 $("#frmSignIn").submit();
 
             }

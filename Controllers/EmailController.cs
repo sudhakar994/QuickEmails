@@ -58,9 +58,16 @@ namespace QuickEmail.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
-        public IActionResult _AddContacts()
+        public IActionResult _AddContacts(long? contactId)
         {
-            return PartialView();
+            var contacts = new Contacts();
+
+            if (contactId > 0 && contactId != null)
+            {
+                contacts = emailRepository.GetContacts(contactId);
+            }
+
+            return PartialView(contacts);
         }
         #endregion
 
@@ -88,21 +95,6 @@ namespace QuickEmail.Controllers
 
         #endregion
 
-        public ActionResult SendEmail()
-        {
-            MailMessage mail = new MailMessage();
-            SmtpClient SmtpServer = new SmtpClient("smtp.gmail.com");
 
-            mail.From = new MailAddress("sksmtechworld@gmail.com");
-            mail.To.Add("sksmtechworld@gmail.com");
-            mail.Subject = "Test";
-            mail.Body = "Report";
-            SmtpServer.Port = 25;
-            SmtpServer.Credentials = new System.Net.NetworkCredential("sksmtechworld@gmail.com", "7708suuu");
-            SmtpServer.EnableSsl = true;
-            SmtpServer.UseDefaultCredentials = true;
-            SmtpServer.Send(mail);
-            return View();
-        }
     }
 }

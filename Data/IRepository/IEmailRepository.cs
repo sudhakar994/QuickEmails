@@ -11,5 +11,7 @@ namespace QuickEmail.Data.IRepository
         string Test();
         bool SaveContacts(Contacts contacts);
         ContactDetails GetContactDetails(Guid userId);
+
+        Contacts GetContacts(long? contactId);
     }
 }

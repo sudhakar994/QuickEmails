@@ -56,6 +56,7 @@
                             <label for="ArticleUrl"><span class="red">*</span>User Domain</label>
                             @Html.TextBoxFor(Model => Model.UserDomain, new { @class = "form-control", @maxlength = "30" })
                         </div>
+                        @Html.HiddenFor(Model=>Model.ContactId)
                     </div>
                 </div>
 
