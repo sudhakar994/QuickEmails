@@ -1,0 +1,72 @@
+﻿@model QuickEmail.Models.EmailDetails
+@{
+    ViewData["Title"] = "Contacts";
+   
+}
+
+
+
+
+<div id="contacts">
+    <div class="searchbg">
+        <div class="container">
+            <div class="searchbox">
+                <h3>Email List</h3>
+            </div>
+        </div>
+    </div>
+    <div class="clearfix spacer10"></div>
+    <div class="container">
+        <a href="javascript:void(0);" onclick="addEmailList()" class="btnprimary btn-md float-right">Add Subscribers</a>
+        <div class="clearfix spacer10"></div>
+        <table id="tblEmailList" class="table">
+            <thead>
+                <tr>
+                    <th>S.No.</th>
+                    <th class="taC">Email</th>
+                    <th class="taC">Target Niche</th>
+                    <th class="taC">List Name</th>
+                    <th class="taC">Country</th>
+                    <th style="width:250px" class="taC">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+           
+
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+
+@section Scripts {
+
+    <script type="text/javascript">
+
+        $(function () {
+          
+
+        })
+        $('#tblEmailList').DataTable({
+            "oLanguage": {
+                "sEmptyTable": "No emails found"
+            },
+            'aoColumnDefs': [{
+                'bSortable': false,
+                'aTargets': [-1]
+            }],
+
+
+        });
+
+        function addEmailList() {
+              $('#modalBody').load("/Email/_AddEmail");
+            $('#myModal').modal("show");
+        }
+
+       
+
+    </script>
+}

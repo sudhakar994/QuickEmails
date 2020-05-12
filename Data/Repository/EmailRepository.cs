@@ -108,5 +108,25 @@ namespace QuickEmail.Data.Repository
         }
 
         #endregion
+
+        #region
+
+        public bool DeleteContact(long contactId)
+        {
+            bool isDeleted = false;
+
+            if (contactId > 0)
+            {
+                using (var dbConnection = quickEmaildbConnection)
+                {
+                    dbConnection.Execute(SqlStringConstant.DeleteContacts, new { ContactId = contactId });
+                    isDeleted = true;
+                }
+            }
+
+            return isDeleted;
+        }
+
+        #endregion
     }
 }

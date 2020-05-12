@@ -1,0 +1,95 @@
+﻿@model QuickEmail.Models.EmailDetails
+@using QuickEmail.Models
+@{
+
+}
+<body>
+    @using (Html.BeginForm("SaveContacts", "Email", FormMethod.Post, new { @Id = "frmAddContacts" }))
+    {
+
+        <div class="modal-header">
+
+
+            <h5 class="modal-title" id="modalHeader">
+
+
+                <span>Add Subsrcibers</span>
+
+
+            </h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body AddVideo">
+            <div class="col-md-12 col-sm-12 col-xs-12 hidden-xs">
+
+                <div>
+
+                    <div>
+
+                        <div class="form-group">
+
+                            <label for="ArticleName"> <span class="red">*</span>Select List</label>
+                            @Html.DropDownList("List",
+                     new SelectList(Enum.GetValues(typeof(EmailList))),
+                     "--Select--",
+                     new { @class = "form-control" })
+
+                        </div>
+                        <div class="form-group">
+                            <label for="ArticleName"> <span class="red">*</span>Add Emails Manually</label>
+                            @Html.RadioButton("Gender", "Male")
+                        </div>
+                        <div class="form-group">
+                            <label for="ArticleName"> <span class="red">*</span>Import From CSV file</label>
+                            @Html.RadioButton("Gender", "Male")
+                        </div>
+                        <div class="form-group">
+                            <label for="ArticleName"> <span class="red">*</span>Email List</label>
+
+                            @Html.TextAreaFor(Model => Model.Email, new { @class = "form-control" })
+                            <p>Add subscriber fields separated by comma(,)</p>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary" onclick="fnSaveEmailList()">Save Email List</button>
+
+        </div>
+
+    }
+</body>
+<script>
+    function fnSaveEmailList() {
+        debugger
+        if ($('#Email').val() != '') {
+            var arrayOfLines = $('#Email').val().split('\n');
+            $.ajax({
+                url: '/Email/SaveEmailList',
+                cache: false,
+                data: JSON.stringify({ emailList: arrayOfLines }),
+                contentType: "application/json; charset=utf-8",
+                type: 'POST',
+                success: function (data) {
+                    if (data != null && data.Status == "Success" && data.ToastrMessage != null) {
+                        $('#myModal').modal("hide");
+                        toastr.success(data.ToastrMessage)
+                        location.href = '/Faqs/ConnectorWords';
+
+                    }
+
+                    else {
+                        toastr.error("Error Occured")
+                    }
+                }
+            });
+        }
+    }
+</script>

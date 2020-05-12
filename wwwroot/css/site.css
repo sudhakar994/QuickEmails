@@ -1411,3 +1411,6 @@ div#divLoader {
     margin-left: 600px;
     margin-top: 200px;
 }
+.dis-flex {
+    display: flex;
+}

@@ -95,6 +95,53 @@ namespace QuickEmail.Controllers
 
         #endregion
 
+        #region DeleteContact
+        /// <summary>
+        /// DeleteContact
+        /// </summary>
+        /// <param name="contactId"></param>
+        /// <returns></returns>
 
+        public JsonResult DeleteContact(long contactId)
+        {
+            bool isDeleted = false;
+            if (contactId > 0)
+            {
+                isDeleted = emailRepository.DeleteContact(contactId);
+            }
+
+            return Json(isDeleted);
+        }
+        #endregion
+
+
+        #region
+
+        public IActionResult EmailList()
+        {
+            return View();
+        }
+
+        #endregion
+
+
+        #region
+
+        public IActionResult _AddEmail()
+        {
+
+            return PartialView();
+        }
+
+        #endregion
+
+
+        #region
+        [HttpPost]
+        public JsonResult SaveEmailList(List<string> emailList)
+        {
+            return Json(true);
+        }
+        #endregion
     }
 }

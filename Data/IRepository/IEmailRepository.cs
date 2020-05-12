@@ -13,5 +13,6 @@ namespace QuickEmail.Data.IRepository
         ContactDetails GetContactDetails(Guid userId);
 
         Contacts GetContacts(long? contactId);
+        bool DeleteContact(long contactId);
     }
 }

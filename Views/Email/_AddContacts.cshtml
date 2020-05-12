@@ -7,11 +7,10 @@
 <body>
     @using (Html.BeginForm("SaveContacts", "Email", FormMethod.Post, new { @Id = "frmAddContacts" }))
     {
-
         <div class="modal-header">
 
 
-            <h5 class="modal-title" id="modalheader">
+            <h5 class="modal-title" id="modalHeader">
                 @if (Model?.ContactId > 0)
                 {
                     <span>Edit Contacts</span>
@@ -25,9 +24,8 @@
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
-
-
         </div>
+
         <div class="modal-body AddVideo">
             <div class="col-md-12 col-sm-12 col-xs-12 hidden-xs">
 
@@ -56,7 +54,7 @@
                             <label for="ArticleUrl"><span class="red">*</span>User Domain</label>
                             @Html.TextBoxFor(Model => Model.UserDomain, new { @class = "form-control", @maxlength = "30" })
                         </div>
-                        @Html.HiddenFor(Model=>Model.ContactId)
+                        @Html.HiddenFor(Model => Model.ContactId)
                     </div>
                 </div>
 
@@ -73,68 +71,68 @@
 
 
 
-    <script>
-        $(function () {
+<script>
+    $(function () {
 
-            $("#frmAddContacts").validate({
-                ignore: ":not(:visible)",
-                rules: {
-                    ContactName: {
-                        required: true
+        $("#frmAddContacts").validate({
+            ignore: ":not(:visible)",
+            rules: {
+                ContactName: {
+                    required: true
 
-                    },
-                    ContactEmail: {
-                        required: true
-
-                    },
-                    ContactPhone: {
-                        required: true
-
-                    },
-                    ContactName: {
-                        required: true
-
-                    },
-                    Country: {
-                        required: true
-
-                    },
-                    UserDomain: {
-                        required: true
-
-                    }
                 },
-                messages: {
-                    ContactName: {
-                        required: "Contact name required"
-                    },
-                    ContactEmail: {
-                        required: "Contact email required"
+                ContactEmail: {
+                    required: true
 
-                    },
-                    ContactPhone: {
-                        required: "Contact phone required"
+                },
+                ContactPhone: {
+                    required: true
 
-                    },
+                },
+                ContactName: {
+                    required: true
 
-                    Country: {
-                        required: "Contact country required"
+                },
+                Country: {
+                    required: true
 
-                    },
-                    UserDomain: {
-                        required: "User domain required"
-
-                    },
+                },
+                UserDomain: {
+                    required: true
 
                 }
-            });
+            },
+            messages: {
+                ContactName: {
+                    required: "Contact name required"
+                },
+                ContactEmail: {
+                    required: "Contact email required"
+
+                },
+                ContactPhone: {
+                    required: "Contact phone required"
+
+                },
+
+                Country: {
+                    required: "Contact country required"
+
+                },
+                UserDomain: {
+                    required: "User domain required"
+
+                },
+
+            }
         });
+    });
 
 
 
-        function fnSaveDocument() {
-            if ($("#frmAddContacts").valid()) {
-                 var form = $("#frmAddContacts").serialize();
+    function fnSaveDocument() {
+        if ($("#frmAddContacts").valid()) {
+            var form = $("#frmAddContacts").serialize();
             $.ajax({
                 type: "POST",
                 url: "/Email/SaveContacts",
@@ -147,17 +145,17 @@
                         location.reload();
                     }
                     else {
-                           toastr.error("Unable to add contacts")
+                        toastr.error("Unable to add contacts")
                     }
 
                 }
             });
-            }
-           
         }
 
+    }
 
-    </script>
 
-    
+</script>
+
+
 
